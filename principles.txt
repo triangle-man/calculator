@@ -1,0 +1,183 @@
+		
+		PROLEGOMENON TO ANY FUTURE CALCULATOR
+		
+
+Introduction
+============
+
+The 2050 Calculator is an approach to modelling the energy system
+characterised by a certain philosophy. Among its design principles,
+not necessarily all of which are perfectly observed in the present
+version of the UK Calculator, are:
+
+- A strictly modular structure. 
+
+    The Calculator is made up of sectoral models. Compartmentalisation
+    of the sectoral "mini-models" meant that each can be understood in
+    isolation of the others.
+
+- A focus on simple designs for the sectoral "mini-models"
+
+- Non-cyclic information flow.
+
+    There are no feedback loops (this is related the to point about
+    simple designs). This may not strictly be considered part of the
+    design philosophy, but it certainly simplified things.
+
+- A focus on questions of the form "if this happens, then what
+  happens?" rather than simply "what will happen?"
+
+    This is perhaps the largest difference with other models, the
+    Calculator does not attempt to forecast, or to optimise.
+
+- A source trail for assumptions (à la Wikipedia's citations).
+
+    The idea is that one admits assumptions only if they are
+    facts. Eg, it is a fact that the following assumptions were
+    published by such-and-such an organisation. (Or, eg, it is a fact
+    that France's nuclear build rate was such-and-such per year.)
+
+    Presently honoured more in the breach.
+
+- A willingness to break any of the above in the interests of getting
+  more people to have a better understanding of the energy system.
+
+- An inviolate principle that it had to "add up".
+
+    By this was meant, in part, that you can't create energy from
+    nothing: the model enforced that particular physical
+    principle. One way of saying this is that we simply built an
+    acccounting tool for the energy system. (The rest of what was
+    meant by this is the statement that, eg, total emissions are the
+    sum of emissions from each sector.)
+
+The question in this note is, can we write down what these actually
+mean for an energy Calculator?
+
+
+An informal sketch of a more formal model
+=========================================
+
+The following remarks are an informal sketch of what a formalisation
+of a Calculator might look like.
+
+1. We first generalise slightly the concept of an annual energy
+   balance table. An annual energy balance table, as reported in
+   DUKES, or the UN International Recommendations for Energy
+   Statistics, is roughly, for one year:
+
+    i.  A set of sectors;
+
+   ii.  For each sector, a set of energy flows, one for each fuel type;
+        such that the sum of flows for a sector is zero. 
+
+   An energy balance table is used to capture historic data. What we
+   would like to do is capture future possible flows. We define for
+   each sector a set of possible flows: those flows (of each fuel)
+   which are allowed.
+
+   The idea here is that each sector is not a single set of flows, it
+   is a "single-year-mini-model" which describes how that sectors
+   inputs and outputs are related to each other.
+
+   Thus, a "model balance" is:
+
+    i.  A set of sectors;
+
+    ii. For each sector, a set of input and output fuels together with
+    	a subset of the space of all possible inputs and outputs. That
+    	subset is the set of all allowable flows.
+
+2. All "model balances" for a single year are thrown together. Then
+   the various inputs and outputs are classified by the type of
+   fuel. Finally, the system should "solve" the resulting system:
+   finding that total energy balance which satisfies the conditions of
+   all the model balances.
+
+3. However, there is a trick. Fuels types are not a non-overlapping
+   collection. Instead, there is a hierarchy of fuels. This is
+   important, because sectors produce and consume fuels at different
+   levels of the hierarchy. For example, in the present version of the
+   Calculator, most sectors which burn solid fuels in fact burn "solid
+   hydrocarbons". But sectors which produce solid fuels tend to
+   produce "coal", "solid biomass", etc.
+
+   This was a nice feature of the Calculator -- it simplified a lot of
+   things. It meant, for example, that instead of petrol cars, diesel
+   cars, and biofuel cars, ... we simply had cars with an internal
+   combustion engine. (The technology is not significantly different.)
+
+   More carefully: if a sector wishes to consume a fuel of type A, it
+   should be happy to consume any fuel that is a subtype of A; a sector
+   which produces a fuel of type A can be taken to have produced any
+   fuel of which A is a subtype. 
+
+   So the "solver" part of the New Calculator will need to promote and
+   demote fuels as necessary.
+
+4. Lots of questions arise: for example, is it possible to decide, for
+   a given collection of model balances, whether the system as a whole
+   has a unique solution?
+
+5. 
+
+So now the idea is this:
+   
+   i.   There are a collection of sectoral mini-models.
+
+   ii.  The job of each mini-model is to create a set of model
+   	balances, one for each year.
+
+   iii. 
+
+
+
+
+
+
+
+1. An annual model is a set of fuels, 
+
+An energy-balance-relationship is a relationship 
+
+1. Sectoral mini-models generate annual energy-balance-relationships. 
+
+2. The total of all energy-balance-relationship
+
+1. Flows (have in and out)
+
+2. Hierarchies of flows:
+   i. Fuel type
+   ii. Years
+   iii. Sectors
+
+[ One of these is not like the others? Perhaps not so, actually: 
+
+  - if produced as Lignite, may be taken as Coal; if Coal required,
+  Lignite is allowed. 
+  
+  - if produced in 2001, may be taken as produced in 2000-2005; if
+    required in 2000-2005, then 2001 is allowed. 
+]
+ 
+3. "Balances" [ need a better name for this ] 
+
+
+
+With the above remarks in mind, we define a Calculator in terms of
+three different entities: 
+
+1. A set of "sectoral mini-models."
+
+2. A set of "fuels". (Which include more than physical fuels; see
+   later.)
+
+3. A set of 
+
+
+
+Mini-models
+-----------
+
+
+
