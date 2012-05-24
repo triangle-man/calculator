@@ -1,18 +1,6 @@
 Thoughts on a units parser
 ==========================
 
-I had started to write a grammar for SI units. However, of course the
-main point of our units parser is to convert from *non*-SI units. So
-that's not helpful. Presumably the set of all possible units is
-ambiguous (for example, "Gy" could be either gigayear or
-gray). (Surprisingly, I think the set of all SI units -- including the
-prefix and all -- is not ambiguous.)
-
-So I think our parser would like to know, as it is reading a quantity,
-what sort of quantity it is expecting (eg, energy or power).
-
-Notwithstanding all that, here is a set of terminology that might be helpful:
-
 
 Terminology
 ===========
@@ -90,6 +78,8 @@ kilogram  =  About to be the bane of our lives, since it is the only
 
 
 
+Grammar
+=======
 
 
 BNF for SI [Incomplete musings]
@@ -100,7 +90,7 @@ with a regular expression. At the moment doesn't allow "/" )
 
 <value>	    = <number> " "+ <unit>
 
-<unit> 	    = empty | <unit-part> ((" " | "·") <unit-part>)*
+<unit> 	    = ε | <unit-part> ((" " | "·") <unit-part>)*
 
 <unit-part> = <si-prefix> <symbol> <power> ; no intervening space
 
@@ -108,4 +98,4 @@ with a regular expression. At the moment doesn't allow "/" )
 	       "d"   "c" | "m" | "µ" | "n" | "p" | "f" | "a" | "z" | "y"
 
 
-<symbol>     = 
+<symbol>     = "m" | "g" | "s" | [and so on...]
